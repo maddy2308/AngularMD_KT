@@ -15,5 +15,8 @@
     "Express"
   ],
   "author": "Madhur Mehta",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.7"
+  }
 }
