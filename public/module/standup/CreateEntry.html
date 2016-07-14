@@ -1,0 +1,32 @@
+<div class="container">
+
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#">Home</a></li>
+        <li role="presentation"><a href="#">My Profile</a></li>
+        <li role="presentation"><a href="#">Show List</a></li>
+    </ul>
+
+    <div class="panel panel-primary" ng-controller="CreateEntryController as createEntryCtrl">
+        <div class="panel-heading">
+            <h3 class="panel-title">Panel title</h3>
+        </div>
+        <div class="panel-body">
+            <div class="col-lg-5">
+                    <input class="form-control" placeholder="Yesterday's Entry" type="text"
+                           ng-model="createEntryCtrl.yesterdayEntry">
+            </div>
+            <div class="col-lg-5">
+                    <input class="form-control" placeholder="Today's Plan" type="text" ng-model="createEntryCtrl.todayPlan">
+            </div>
+        </div>
+        <div class="panel-footer">
+            <input class="btn btn-primary" type="button" ng-click="createEntryCtrl.submitEntry()" value="Submit">
+        </div>
+    </div>
+
+    <form class="row" >
+
+
+    </form>
+
+</div>

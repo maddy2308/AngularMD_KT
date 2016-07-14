@@ -17,6 +17,8 @@
   "author": "Madhur Mehta",
   "license": "ISC",
   "dependencies": {
-    "angular": "^1.5.7"
+    "angular": "^1.5.7",
+    "bootstrap": "^3.3.6",
+    "jquery": "^2.2.4"
   }
 }
