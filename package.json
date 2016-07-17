@@ -4,7 +4,8 @@
   "description": "Angular Material Design (knowledge transfer)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "supervisor ./bin/www"
   },
   "keywords": [
     "Angular",
@@ -20,6 +21,10 @@
     "angular": "^1.5.7",
     "angular-filter": "^0.5.9",
     "bootstrap": "^3.3.6",
-    "jquery": "^2.2.4"
+    "express": "^4.14.0",
+    "jquery": "^2.2.4",
+    "pg": "^6.0.2",
+    "q": "^1.4.1",
+    "supervisor": "^0.11.0"
   }
 }
