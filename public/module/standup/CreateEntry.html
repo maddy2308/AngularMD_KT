@@ -22,9 +22,9 @@
             <br>
 
             <div ng-repeat="entryObject in createEntryCtrl.entries track by $index">
-                <div class="col-lg-11" >
-                    {{entryObject.date}} --> {{entryObject.plan}}
-                </div>
+                <ul class="col-lg-11" >
+                    <li class="form-control">{{entryObject.date | date:'EEE: MM/dd/yyyy'}} --> {{entryObject.plan}} </li>
+                </ul>
                 <div class="col-lg-1">
                     <input type="button" class="btn btn-danger" ng-click="createEntryCtrl.removeForm($index)" value="X">
                 </div>
