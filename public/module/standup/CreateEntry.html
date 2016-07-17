@@ -1,32 +1,38 @@
+<div ng-include src="'./module/standup/menu.html'"></div>
+
 <div class="container">
-
-    <ul class="nav nav-tabs">
-        <li role="presentation" class="active"><a href="#">Home</a></li>
-        <li role="presentation"><a href="#">My Profile</a></li>
-        <li role="presentation"><a href="#">Show List</a></li>
-    </ul>
-
     <div class="panel panel-primary" ng-controller="CreateEntryController as createEntryCtrl">
         <div class="panel-heading">
-            <h3 class="panel-title">Panel title</h3>
+            <h3 class="panel-title">Create Entry</h3>
         </div>
         <div class="panel-body">
-            <div class="col-lg-5">
-                    <input class="form-control" placeholder="Yesterday's Entry" type="text"
-                           ng-model="createEntryCtrl.yesterdayEntry">
-            </div>
-            <div class="col-lg-5">
-                    <input class="form-control" placeholder="Today's Plan" type="text" ng-model="createEntryCtrl.todayPlan">
+            <form class="row">
+                <div class="col-lg-3">
+                    <input type="date" class="form-control" name="Entry date" min="2016-01-01"
+                           ng-model="createEntryCtrl.entry.date">
+                </div>
+                <div class="col-lg-8" >
+                    <input type="text" class="form-control" rows="4" cols="50" placeholder="Entry" class="col-lg-8"
+                           ng-model="createEntryCtrl.entry.plan">
+                </div>
+                <div class="col-lg-1">
+                    <input type="button" class="btn btn-primary" ng-click="createEntryCtrl.addForm()" value="+">
+                </div>
+            </form>
+            <br>
+
+            <div ng-repeat="entryObject in createEntryCtrl.entries track by $index">
+                <div class="col-lg-11" >
+                    {{entryObject.date}} --> {{entryObject.plan}}
+                </div>
+                <div class="col-lg-1">
+                    <input type="button" class="btn btn-danger" ng-click="createEntryCtrl.removeForm($index)" value="X">
+                </div>
+                <br>
             </div>
         </div>
         <div class="panel-footer">
             <input class="btn btn-primary" type="button" ng-click="createEntryCtrl.submitEntry()" value="Submit">
         </div>
     </div>
-
-    <form class="row" >
-
-
-    </form>
-
 </div>
