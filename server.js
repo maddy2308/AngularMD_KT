@@ -16,6 +16,7 @@ app.listen(3000, function () {
 });
 
 var todoDAO = require("./Server/DAO/TodoDAO.js");
+require("./Server/model/Todo.js").createTable(client);
 
 app.post('/api/v1/todos', function(req, res) {
     console.log("testing post api call");
