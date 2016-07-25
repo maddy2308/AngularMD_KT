@@ -14,31 +14,21 @@
         };
 
         function createStandUpEntry(entries) {
-            var deferred = $q.defer();
-            $http.post("/api/v1/entry/" + entries[0].email, entries)
-                .success(function (data) {
-                    deferred.resolve(data);
-                })
-                .error(function (msg, code) {
-                    deferred.reject(msg);
-                    $log.error(msg, code);
-                });
-            return deferred.promise;
+            return $http.post("/api/v1/entry/" + entries[0].email, entries).then(successResponse).catch(errorResponse);
         }
 
         function getAllEntries() {
-            var deferred = $q.defer();
-            $http.get("/api/v1/entry")
-                .success(function (data) {
-                    deferred.resolve(data);
-                })
-                .error(function (msg, code) {
-                    deferred.reject(msg);
-                    $log.error(msg, code);
-                });
-
-            return deferred.promise;
+            return $http.get("/api/v1/entry").then(successResponse).catch(errorResponse);
         }
+
+        function successResponse(response) {
+            return response.data;
+        }
+
+        function errorResponse (error) {
+            return new Error(error);
+        }
+
     }
 
 })();

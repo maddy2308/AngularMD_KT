@@ -7,7 +7,7 @@ module.exports = function (pg, connectionString) {
     };
 
     function createEntry(userId, entry) {
-        var results = [];
+
         var deferred = Q.defer();
 
         // Get a Postgres client from the connection pool
@@ -15,21 +15,26 @@ module.exports = function (pg, connectionString) {
             // Handle connection errors
             if(err) {
                 done();
-                console.log(err);
                 return deferred.reject({ success: false, data: err});
             }
 
+            var promises = [];
             // SQL Query > Insert Data
             for (var index in entry) {
-                client.query("INSERT INTO standup_entry (entry, user_id) VALUES($1, $2)",
-                    [entry[index]['plan'], userId]);
+                promises.push(
+                    client.query("INSERT INTO standup_entry (entry, user_id) VALUES($1, $2)", [entry[index]['plan'], userId]));
             }
-            return deferred.promise;
+            Q.all(promises).then(function(resp) {
+                deferred.resolve("All inserts completed");
+            }, function(err) {
+                return deferred.reject({ success: false, data: err});
+            })
         });
+
+        return deferred.promise;
     }
 
     function findAllEntries() {
-        var results = [];
         var deferred = Q.defer();
 
         // Get a Postgres client from the connection pool
@@ -42,19 +47,18 @@ module.exports = function (pg, connectionString) {
             }
 
             // SQL Query > Select Data
-            var query = client.query("SELECT entry, entry_date, email, display_name FROM standup_entry se " +
+            var JOIN_QUERY = "SELECT entry, entry_date, email, display_name FROM standup_entry se " +
                 "JOIN scrum_user su ON se.user_id = su.user_id " +
-                "ORDER BY standup_entry_id ASC");
+                "ORDER BY standup_entry_id ASC";
 
-            // Stream results back one row at a time
-            query.on('row', function(row) {
-                results.push(row);
-            });
-
-            // After all data is returned, close connection and return results
-            query.on('end', function() {
+            client.query(JOIN_QUERY, function (err, result) {
+                //call `done()` to release the client back to the pool
                 done();
-                return deferred.resolve(results);
+
+                if (err) {
+                    return deferred.reject({success: false, data: err});
+                }
+                return deferred.resolve(result.rows);
             });
         });
 

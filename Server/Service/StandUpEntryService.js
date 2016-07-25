@@ -10,21 +10,25 @@ module.exports = function (app, entryDao, userDao) {
         var email = entries[0].email;
 
         userDao.findUserByEmail(email)
-            .then(function (res) {
-                return entryDao.createEntry(res[0]['user_id'], entries);
-            }, function(err) {
-                res.error("User not found");
+            .then(function (res, error) {
+                if (!error) {
+                    return entryDao.createEntry(res[0]['user_id'], entries);
+                } else {
+                    console.log(error);
+                }
             })
-            .then(function (response) {
+            .then(function (resp) {
                 findAllEntries(req, res);
-            }, function(err) {
-                res.error("User not found");
             });
     }
 
     function findAllEntries(req, res) {
-        entryDao.findAllEntries().then(function(response) {
-            res.json(response);
+        entryDao.findAllEntries().then(function (response, error) {
+            if (!error) {
+                res.send(response);
+            } else {
+                res.error("User not found");
+            }
         });
     }
 };
