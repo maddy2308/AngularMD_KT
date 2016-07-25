@@ -1,12 +1,12 @@
 module.exports = function (app, client, pg, connectionString) {
 
     // User Table
-    require("./model/user_model.js").createUserTable(client);
-    var userDao = require("./DAO/user_dao.js")(pg, connectionString);
-    require("./Service/user_service.js")(app, userDao);
+    require("./model/UserModel.js").createUserTable(client);
+    var userDao = require("./DAO/UserDAO.js")(pg, connectionString);
+    require("./Service/UserService.js")(app, userDao);
 
     // Entry Table
-    require("./model/standupEntry_model.js").createUserStandUpEntryTable(client);
-    var standUpDao = require("./DAO/standupEntry_dao.js")(pg, connectionString);
-    require("./Service/stanupEntry_service.js")(app, standUpDao);
+    require("./model/StandUpEntryModel.js").createUserStandUpEntryTable(client);
+    var standUpDao = require("./DAO/StandUpEntryDAO.js")(pg, connectionString);
+    require("./Service/StanUpEntryService.js")(app, standUpDao);
 };

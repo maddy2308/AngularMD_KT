@@ -8,7 +8,7 @@ function createUserStandUpEntryTable(client) {
         'entry VARCHAR(40) not null, ' +
         'complete BOOLEAN, ' +
         'entry_date DATE DEFAULT now(), ' +
-        'user_id Integer REFERENCES Users(user_id))';
+        'user_id Integer REFERENCES scrum_user(user_id))';
 
     var query = client.query(createSql);
     query.on('end', function () {

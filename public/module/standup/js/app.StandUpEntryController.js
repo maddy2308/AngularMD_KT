@@ -3,11 +3,11 @@
 
     angular
         .module("AngularMDApp")
-        .controller('CreateEntryController', CreateEntryController);
+        .controller('StandUpEntryController', StandUpEntryController);
 
-    CreateEntryController.$inject = [];
+    StandUpEntryController.$inject = ['StandUpEntryService'];
 
-    function CreateEntryController() {
+    function StandUpEntryController(standupEntryService) {
         var vm = this;
 
         vm.submitEntry = submitEntry;
@@ -15,6 +15,16 @@
         vm.removeForm = removeForm;
 
         vm.entries = [];
+        vm.allEntriesInDb = [];
+
+        (function(){
+            standupEntryService.getAllEntries().then(
+                function (resp) {
+                    vm.allEntriesInDb = resp;
+                }, function (err) {
+                    alert ('No Entries Found');
+                })
+        })();
 
         function submitEntry () {
             alert("Submit clicked");

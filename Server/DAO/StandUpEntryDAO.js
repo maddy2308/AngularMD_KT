@@ -24,7 +24,9 @@ module.exports = function (pg, connectionString) {
                 [entry['entry'], entry['complete'], entry['user_id']]);
 
             // SQL Query > Select Data
-            var query = client.query("SELECT * FROM standup_entry ORDER BY standup_entry_id ASC");
+            var query = client.query("SELECT entry, entry_date, email, display_name FROM standup_entry se " +
+                "JOIN scrum_user su ON se.user_id = su.user_id " +
+                "ORDER BY standup_entry_id ASC");
 
             // Stream results back one row at a time
             query.on('row', function(row) {
@@ -54,7 +56,9 @@ module.exports = function (pg, connectionString) {
             }
 
             // SQL Query > Select Data
-            var query = client.query("SELECT * FROM standup_entry ORDER BY standup_entry_id ASC");
+            var query = client.query("SELECT entry, entry_date, email, display_name FROM standup_entry se " +
+                "JOIN scrum_user su ON se.user_id = su.user_id " +
+                "ORDER BY standup_entry_id ASC");
 
             // Stream results back one row at a time
             query.on('row', function(row) {

@@ -3,7 +3,7 @@ module.exports = {
 };
 
 function createUserTable(client) {
-    var createSql = 'CREATE TABLE IF NOT EXISTS Users ( ' +
+    var createSql = 'CREATE TABLE IF NOT EXISTS scrum_user ( ' +
         'user_id SERIAL PRIMARY KEY,' +
         'email VARCHAR(80) NOT NULL, ' +
         'display_name VARCHAR(50) NOT NULL,' +

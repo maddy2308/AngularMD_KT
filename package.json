@@ -18,11 +18,12 @@
   "author": "Madhur Mehta",
   "license": "ISC",
   "dependencies": {
-    "angular": "^1.5.7",
-    "angular-filter": "^0.5.9",
-    "bootstrap": "^3.3.6",
+    "body-parser": "^1.15.2",
+    "cors": "^2.7.1",
     "express": "^4.14.0",
+    "fs": "0.0.2",
     "jquery": "^2.2.4",
+    "multer": "^1.1.0",
     "pg": "^6.0.2",
     "q": "^1.4.1",
     "supervisor": "^0.11.0"
