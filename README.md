@@ -7,3 +7,6 @@
   (C) Module2-CreateAngularController --> This branch brings in the controller that is hooked to the form, and is broken into  two parts where the controller is first part and beautifying the form is second.<br />
   (D) Module2b-AddBootstrapAndBeutifyForm --> This is the second part of the module2 where we beautify the form using  Bootstrap. Added the Menu using Bootstrap <navbar> <br />
   (E) Module3-CreateEntryForm --> The entry form(View) is hooked with Create, Read, Delete functioanlity in the Angular  Controller<br />
+
+Download for macs
+http://postgresguide.com/setup/install.html#for-mac
