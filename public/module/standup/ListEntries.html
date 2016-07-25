@@ -1,5 +1,5 @@
 <div class="container" ng-controller="StandUpEntryController as entryCtrl">
-    <ol ng-repeat="standUpEntry in entryCtrl.allEntriesInDb">
-        <li>{{standUpEntry.entry}} -- {{standUpEntry.display_name}}</li>
-    </ol>
+    <div ng-repeat="standUpEntry in entryCtrl.allEntriesInDb">
+        <div>{{standUpEntry.entry}} -- {{standUpEntry.display_name}}</div>
+    </div>
 </div>

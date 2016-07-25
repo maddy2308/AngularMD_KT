@@ -27,13 +27,20 @@
         })();
 
         function submitEntry () {
-            alert("Submit clicked");
+            standupEntryService.createStandUpEntry(vm.entries).then(
+                function (resp) {
+                    swal('Success', "The entries were created", 'success');
+                    vm.allEntriesInDb = resp;
+                }, function (err) {
+                    alert ('No Entries inserted, try again');
+                })
         }
 
         function addForm() {
             var entryObject = {
                 'date' : vm.entry.date,
-                'plan' : vm.entry.plan
+                'plan' : vm.entry.plan,
+                'email': vm.entry.email
             };
             vm.entries.push(entryObject);
             vm.entry.plan = '';

@@ -13,8 +13,17 @@
             getAllEntries: getAllEntries
         };
 
-        function createStandUpEntry() {
-
+        function createStandUpEntry(entries) {
+            var deferred = $q.defer();
+            $http.post("/api/v1/entry/" + entries[0].email, entries)
+                .success(function (data) {
+                    deferred.resolve(data);
+                })
+                .error(function (msg, code) {
+                    deferred.reject(msg);
+                    $log.error(msg, code);
+                });
+            return deferred.promise;
         }
 
         function getAllEntries() {

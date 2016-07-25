@@ -8,5 +8,5 @@ module.exports = function (app, client, pg, connectionString) {
     // Entry Table
     require("./model/StandUpEntryModel.js").createUserStandUpEntryTable(client);
     var standUpDao = require("./DAO/StandUpEntryDAO.js")(pg, connectionString);
-    require("./Service/StanUpEntryService.js")(app, standUpDao);
+    require("./Service/StandUpEntryService.js")(app, standUpDao, userDao);
 };
