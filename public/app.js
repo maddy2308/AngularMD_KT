@@ -2,6 +2,6 @@
     "use strict";
 
     angular
-        .module('AngularMDApp', []);
+        .module('AngularMDApp', ['ngMaterial']);
 
 })();
