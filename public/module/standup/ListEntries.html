@@ -1,5 +1,12 @@
 <div class="container">
-    <div ng-repeat="standUpEntry in entryCtrl.allEntriesInDb">
-        <div>{{standUpEntry.entry}} -- {{standUpEntry.display_name}}</div>
+
+    <div ng-repeat="(key, value) in entryCtrl.allEntriesInDb | groupBy:'display_name'">
+        Group Member Name: <b>{{ key }}</b>
+        <div>
+            Plan for:
+            <div ng-repeat="standUpEntry in value">
+                <i>{{standUpEntry.entry_date | date:'MM/dd/yyyy'}}</i> is {{standUpEntry.entry}}
+            </div>
+        </div>
     </div>
 </div>

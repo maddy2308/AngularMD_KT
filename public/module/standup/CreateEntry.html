@@ -4,37 +4,48 @@
             <h3 class="panel-title">Create Entry</h3>
         </div>
         <div class="panel-body">
-            <form class="row">
-                <div class="col-lg-2">
-                    <input type="date" class="form-control" name="Entry date" min="2016-01-01"
-                           ng-model="entryCtrl.entry.date">
-                </div>
-                <div class="col-lg-6" >
-                    <input type="text" class="form-control" rows="4" cols="50" placeholder="Entry" class="col-lg-8"
-                           ng-model="entryCtrl.entry.plan">
-                </div>
-                <div class="col-lg-3" >
-                    <input type="text" class="form-control" rows="4" cols="50" placeholder="email" class="col-lg-8"
-                           ng-model="entryCtrl.entry.email">
-                </div>
-                <div class="col-lg-1">
-                    <input type="button" class="btn btn-primary" ng-click="entryCtrl.addForm()" value="+">
-                </div>
-            </form>
-            <br>
+            <md-content layout-padding layout-xs="column" layout="row" class="md-inline-form">
+                <md-datepicker ng-model="entryCtrl.entry.date" md-placeholder="Enter date" layout-margin flex-xs="100">
+                </md-datepicker>
 
-            <div ng-repeat="entryObject in entryCtrl.entries track by $index">
-                <ul class="col-lg-11" >
-                    <li class="form-control">{{entryObject.date | date:'EEE: MM/dd/yyyy'}} --> {{entryObject.plan}} </li>
-                </ul>
-                <div class="col-lg-1">
-                    <input type="button" class="btn btn-danger" ng-click="entryCtrl.removeForm($index)" value="X">
-                </div>
-                <br>
-            </div>
+                <md-input-container class="md-icon-float md-block" flex="50" flex-xs="100">
+                    <label>Entry</label>
+                    <md-icon aria-label="Text" class="material-icons">text_format</md-icon>
+                    <input ng-model="entryCtrl.entry.plan">
+                </md-input-container>
+
+                <md-input-container class="md-icon-float md-block" flex="25" flex-xs="100">
+                    <!-- Use floating placeholder instead of label -->
+                    <md-icon aria-label="Email" class="material-icons">email</md-icon>
+                    <input ng-model="entryCtrl.entry.email" type="email" placeholder="Email (required)"
+                           ng-required="true">
+                </md-input-container>
+
+                <md-button class="md-fab md-primary md-hue-2 md-mini" aria-label="Add" ng-click="entryCtrl.addForm()">
+                    <md-icon aria-label="Add" class="material-icons">add_circle</md-icon>
+                </md-button>
+
+            </md-content>
+            <md-divider ></md-divider>
+
+            <md-list flex="50" flex-xs="100" layout="row" layout-xs="column">
+                <md-subheader class="md-no-sticky">Entries</md-subheader>
+                <md-list-item layout-padding class="md-2-line"
+                              ng-repeat="entryObject in entryCtrl.entries track by $index" ng-click="null">
+                    <md-button class="md-fab md-hue-2 md-mini" aria-label="Add" ng-click="entryCtrl.removeForm($index)">
+                        <md-icon aria-label="delete" class="material-icons">delete</md-icon>
+                    </md-button>
+                    <div class="md-list-item-text" layout="column">
+                        <h3>{{entryObject.email}}</h3>
+                        <h4>{{entryObject.date | date:'EEE: MM/dd/yyyy'}}</h4>
+                        <p>{{entryObject.plan}}</p>
+                    </div>
+                </md-list-item>
+                <md-divider ></md-divider>
+            </md-list>
         </div>
         <div class="panel-footer">
-            <input class="btn btn-primary" type="button" ng-click="entryCtrl.submitEntry()" value="Submit">
+            <md-button class="md-raised md-primary" ng-click="entryCtrl.submitEntry()">Submit</md-button>
         </div>
     </div>
 </div>
